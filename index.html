@@ -1241,6 +1241,39 @@
         transform: translateX(-6px);
       }
 
+      .social-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+      }
+      .social-link {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(244, 241, 236, 0.25);
+        color: var(--cream);
+        background: rgba(244, 241, 236, 0.02);
+        transition:
+          background 0.3s var(--ease),
+          color 0.3s var(--ease),
+          border-color 0.3s var(--ease),
+          transform 0.3s var(--ease);
+      }
+      .social-link svg {
+        width: 18px;
+        height: 18px;
+        display: block;
+      }
+      .social-link:hover {
+        background: var(--cream);
+        color: var(--ink);
+        border-color: var(--cream);
+        transform: translateY(-2px);
+      }
+
       .footer-bottom {
         display: flex;
         justify-content: space-between;
@@ -1905,15 +1938,15 @@
               <dl class="contact-dl">
                 <div>
                   <dt>الهاتف</dt>
-                  <dd class="ltr">+20 100 000 0000</dd>
+                  <dd class="ltr">+966 122906219 </dd>
                 </div>
                 <div>
                   <dt>البريد</dt>
-                  <dd class="ltr">info@almawared.com</dd>
+                  <dd class="ltr">AlmawaredSA@gmail.com</dd>
                 </div>
                 <div>
                   <dt>العنوان</dt>
-                  <dd>شارع المعارض —  الرياض</dd>
+                  <dd>  طريق الحرمين المدينة الفرعي، حي السلمانية الشرقية، ابرق الرغامة، جدة  </dd>
                 </div>
                 <div>
                   <dt>ساعات العمل</dt>
@@ -2016,16 +2049,82 @@
           <div class="footer-col">
             <h5>تواصل</h5>
             <div class="footer-links">
-              <a href="tel:+201000000000" dir="ltr" style="text-align: right"
-                >+20 100 000 0000</a
+              <a href="tel:+966500000000" dir="ltr" style="text-align: right"
+                >+966 122906219 </a
               >
               <a
-                href="mailto:info@almawared.com"
+                href="mailto:AlmawaredSA@gmail.com"
                 dir="ltr"
                 style="text-align: right"
-                >info@almawared.com</a
+                >AlmawaredSA@gmail.com</a
               >
-              <a href="#">شارع المعارض —  الرياض</a>
+              <a href="#">  طريق الحرمين المدينة الفرعي، حي السلمانية الشرقية، ابرق الرغامة، جدة </a>
+            </div>
+
+            <div class="social-list" aria-label="مواقع التواصل الاجتماعي">
+              <a
+                class="social-link"
+                href="https://www.instagram.com/almawaredsa"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="إنستغرام"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"></circle>
+                </svg>
+              </a>
+
+              <a
+                class="social-link"
+                href="https://twitter.com/AlmawaredSA"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="تويتر"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M18.9 2h3.4l-7.45 8.52 8.76 11.48h-6.87l-5.38-7.04L4.3 22H.9l7.92-9.05L.5 2h7.04l4.86 6.47L18.9 2Zm-1.2 18h1.89L7.2 3.9H5.2L17.7 20Z"/>
+                </svg>
+              </a>
+
+              <a
+                class="social-link"
+                href="https://www.facebook.com/AlmawaredSA"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="فيسبوك"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M13.5 22v-8h2.7l.4-3.1h-3.1V7.4c0-.9.3-1.6 1.7-1.6h1.8V2.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v2.5H7v3.1h2.8v8h3.7Z"/>
+                </svg>
+              </a>
+
+              <a
+                class="social-link"
+                href="https://www.snapchat.com/add/AlmawaredSA"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="سناب شات"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12.03 2.2c2.43 0 4.22 1.96 4.22 4.18 0 1.7-.84 2.8-1.58 3.87-.66.96-1.02 1.5-1.02 2.52 0 .5.11.99.34 1.45.2.4.5.78.78 1.15.28.36.52.64.52 1.04 0 .42-.34.72-.74.9-.73.33-1.48.49-2.22.49s-1.49-.16-2.22-.49c-.4-.18-.74-.48-.74-.9 0-.4.24-.68.52-1.04.28-.37.58-.75.78-1.15.23-.46.34-.95.34-1.45 0-1.01-.36-1.56-1.02-2.52-.74-1.07-1.58-2.17-1.58-3.87 0-2.22 1.79-4.18 4.22-4.18Zm.11 7.94c.99.06 1.74.8 1.74 1.79 0 1.04-.87 1.9-1.94 1.9-.9 0-1.62-.6-1.82-1.44-.2-.8.09-1.68.82-2.16.3-.2.64-.3 1.2-.3Zm-2.9 8.71c.2.11.42.15.65.15.45 0 .74-.17 1.06-.38.21-.14.44-.21.71-.21.26 0 .5.07.71.21.32.21.61.38 1.06.38.23 0 .45-.04.65-.15.53-.28.86-.82.86-1.42 0-.69-.43-1.3-1.13-1.61-.24-.11-.49-.2-.75-.28a2.47 2.47 0 0 1-.75-.34c-.27-.17-.45-.44-.45-.78 0-.28.16-.51.4-.7.37-.29.78-.46 1.26-.46.32 0 .58.08.8.22.18.11.35.17.53.17.3 0 .54-.2.54-.52 0-.28-.17-.48-.43-.6-.53-.21-1.2-.33-1.89-.33-1.38 0-2.51.54-3.18 1.6-.42.66-.63 1.42-.63 2.23 0 .96.4 1.74 1.14 2.3.4.3.93.53 1.5.61Z"/>
+                </svg>
+              </a>
+
+              <a
+                class="social-link"
+                href="https://www.youtube.com/@almawaredsa"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="يوتيوب"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M21.6 7.2a2.96 2.96 0 0 0-2.08-2.09C17.7 4.8 12 4.8 12 4.8s-5.7 0-7.52.31A2.96 2.96 0 0 0 2.4 7.2 30.2 30.2 0 0 0 2 12a30.2 30.2 0 0 0 .4 4.8 2.96 2.96 0 0 0 2.08 2.09C6.3 19.2 12 19.2 12 19.2s5.7 0 7.52-.31A2.96 2.96 0 0 0 21.6 16.8 30.2 30.2 0 0 0 22 12a30.2 30.2 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z"/>
+                </svg>
+              </a>
+
+      
             </div>
           </div>
         </div>
