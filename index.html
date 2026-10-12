@@ -8,12 +8,9 @@
       name="description"
       content="شركة الموارد لتوريد وتركيب السيراميك والرخام والبورسلين. جودة تدوم لعقود."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@200;300;400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
     <style>
       /* ============================================
    RESET & BASE
@@ -44,11 +41,12 @@
         scroll-behavior: smooth;
         scroll-padding-top: 100px;
         -webkit-text-size-adjust: 100%;
+        overflow-x: clip;
       }
 
       body {
         font-family:
-          "IBM Plex Sans Arabic",
+          "Cairo",
           system-ui,
           -apple-system,
           sans-serif;
@@ -57,7 +55,7 @@
         line-height: 1.7;
         color: var(--ink);
         background: var(--bone);
-        overflow-x: hidden;
+        overflow-x: clip;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-feature-settings: "kern" 1;
@@ -125,15 +123,16 @@
         inset-inline: 0;
         z-index: 100;
         border-bottom: 1px solid transparent;
+        background: transparent;
         transition:
           background 0.4s var(--ease),
           border-color 0.4s var(--ease);
       }
       .nav.scrolled {
-        background: rgba(242, 239, 233, 0.82);
-        -webkit-backdrop-filter: blur(16px) saturate(180%);
-        backdrop-filter: blur(16px) saturate(180%);
-        border-bottom-color: var(--line);
+        background: transparent;
+        border-bottom-color: transparent;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
       }
       .nav-inner {
         display: flex;
@@ -141,6 +140,7 @@
         justify-content: space-between;
         gap: 24px;
         padding-block: 26px;
+        direction: ltr;
         transition: padding 0.4s var(--ease);
       }
       .nav.scrolled .nav-inner {
@@ -170,7 +170,7 @@
       }
 
       .menu {
-        display: flex;
+        display: none;
         gap: 36px;
         align-items: center;
         margin-inline: auto;
@@ -207,6 +207,7 @@
         flex-shrink: 0;
       }
       .nav-cta {
+        display: none;
         font-size: 18px;
         font-weight: 500;
         padding: 11px 22px;
@@ -224,34 +225,32 @@
       }
 
       .burger {
-        display: none;
-        width: 40px;
-        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 64px;
+        min-width: 64px;
+        height: 64px;
+        padding: 0;
         position: relative;
         flex-shrink: 0;
-      }
-      .burger span {
-        position: absolute;
-        inset-inline: 8px;
-        height: 1.5px;
+        border-radius: 50%;
         background: var(--ink);
-        transition:
-          transform 0.4s var(--ease),
-          opacity 0.3s var(--ease);
       }
-      .burger span:nth-child(1) {
-        top: 15px;
+      .burger::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #f4c95d;
+        transform: translate(-50%, -50%);
+        transition: transform 0.3s var(--ease);
       }
-      .burger span:nth-child(2) {
-        bottom: 15px;
-      }
-      .burger.open span:nth-child(1) {
-        top: 19px;
-        transform: rotate(45deg);
-      }
-      .burger.open span:nth-child(2) {
-        bottom: 19px;
-        transform: rotate(-45deg);
+      .burger.open::after {
+        transform: translate(-50%, -50%) scale(1.45);
       }
 
       /* Mobile menu */
@@ -263,7 +262,9 @@
         padding: 120px 32px 48px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 28px;
+        overflow-y: auto;
         transform: translateX(100%);
         transition: transform 0.7s var(--ease-out);
       }
@@ -316,6 +317,22 @@
         font-size: 18px;
         font-weight: 500;
         align-self: flex-start;
+      }
+      .mobile-menu-map {
+        width: min(100%, 560px);
+      }
+      .mobile-menu-map h2,
+      .footer-map h5 {
+        margin-bottom: 12px;
+        color: var(--ink);
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .mobile-menu-map iframe {
+        display: block;
+        width: 100%;
+        height: 160px;
+        border: 0;
       }
 
       /* ============================================
@@ -627,10 +644,10 @@
         font-size: 18px;
         font-weight: 500;
         color: var(--muted);
-        font-family: "IBM Plex Sans Arabic", sans-serif;
+        font-family: "Cairo", sans-serif;
       }
       .sec-label .num {
-        font-family: "IBM Plex Sans Arabic", sans-serif;
+        font-family: "Cairo", sans-serif;
         font-weight: 600;
         color: var(--ink);
         font-size: 18px;
@@ -680,7 +697,7 @@
       }
 
       .svc-num {
-        font-family: "IBM Plex Sans Arabic", sans-serif;
+        font-family: "Cairo", sans-serif;
         font-size: 18px;
         font-weight: 500;
         color: var(--muted);
@@ -742,6 +759,602 @@
       }
 
       /* ============================================
+   PRODUCTS
+   ============================================ */
+
+
+/* Hide radio buttons */
+input[type="radio"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+.cards {
+	--base-rotation: 0deg;
+	--full-circle: 360deg;
+	--items: 20;
+	--radius: 30vw;
+	--duration: 300ms;
+
+	--cards-container-size: calc(var(--radius) * 2);
+	--thumb-size: 30px;
+	--image-size: calc(var(--radius));
+	--image-y: 0%;
+	--labels-offset: calc(var(--radius) * -1);
+	--title-top: calc(var(--thumb-size) * -3);
+	--info-top: calc(100% + 2rem);
+	--info-width: 100%;
+
+	position: fixed;
+	inset: 0;
+	margin: auto;
+	width: var(--cards-container-size);
+	height: var(--cards-container-size);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	perspective: 1000px;
+	transition: transform 0.3s ease-in-out var(--duration);
+	list-style: none;
+}
+
+@media (min-width: 800px) {
+	.cards {
+		--radius: 30vw;
+		--thumb-size: 40px;
+		--title-top: 2rem;
+	}
+}
+@media (min-width: 1200px) {
+	.cards {
+		--radius: 20vw;
+		--thumb-size: 50px;
+		--image-y: -20%;
+		--info-width: min(100% - 2rem, 65%);
+
+		--info-top: calc(var(--image-size) * 1.3);
+	}
+}
+
+.cards li {
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	padding: 0;
+	transform-origin: center;
+	display: grid;
+	place-content: center;
+	transform: rotate(calc(var(--i) * 360deg / var(--items)));
+	pointer-events: none;
+}
+
+.cards li > label {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	transform: translateY(var(--labels-offset));
+	width: var(--thumb-size);
+	height: var(--thumb-size);
+	cursor: pointer;
+	pointer-events: initial;
+	/*outline: 1px dashed red;*/
+	transition: var(--duration) ease-in-out;
+}
+/* thumbs */
+.cards li > label > img {
+	transform-origin: center;
+	width: 100%;
+	scale: var(--label-scale, 1);
+	opacity: var(--label-opacity, 1);
+	transition: scale var(--duration) ease-in-out,
+		opacity var(--duration) ease-in-out;
+}
+/* redudce scale of all thumbs */
+.cards:has(label:hover) label {
+	--label-scale: 0.75;
+}
+/* enlarge thumbs either side of hovered */
+.cards li:has(+ li > label:hover) > label,
+.cards li:has(label:hover) + li > label {
+	--label-scale: 1.25;
+}
+/* hovered thumb */
+.cards li > label:hover img {
+	--label-scale: 1.5;
+}
+/* main image */
+.cards > li > img {
+	width: var(--image-size);
+	height: var(--image-size);
+	object-fit: contain;
+	z-index: 52;
+
+	transform: translateY(var(--image-y));
+	transition-property: opacity, scale, width, height, transform, filter;
+	transition-duration: var(--duration);
+	transition-timing-function: ease-in-out;
+	transition-delay: var(--item-delay, 0ms), var(--item-delay, 0ms), 0ms, 0ms, 0ms,
+		0ms;
+
+	pointer-events: initial;
+	opacity: var(--item-opacity, 0);
+	scale: var(--item-scale, 0);
+	filter: drop-shadow(0px 0px 5px rgba(255 255 255 / 0.25));
+}
+
+.cards > li:has(:checked) > img:hover {
+	transform: translateY(var(--image-y)) rotateY(-30deg) rotateX(-5deg);
+	transition-delay: 0ms;
+	filter: drop-shadow(15px 10px 5px rgba(255 255 255 / 0.25));
+}
+
+.cards > li > h2,
+.cards > li > p {
+	position: absolute;
+	left: 50%;
+	text-align: center;
+	transform: translate(-50%, 0);
+	transform-origin: center;
+}
+.cards > li > h2 {
+	top: var(--title-top);
+	opacity: var(--title-opacity, 0);
+	translate: 0 var(--title-y, -30px);
+	transition: var(--duration) ease-in-out var(--title-delay, 0ms);
+}
+.cards > li > p {
+	top: var(--info-top);
+	margin: 0 auto;
+	width: var(--info-width);
+	z-index: 2;
+	font-size: clamp(0.8rem, 3.5vw + 0.05rem, 1.1rem);
+	text-wrap: balance;
+	opacity: var(--info-opacity, 0);
+	translate: 0 var(--info-y, 30px);
+	transition: var(--duration) ease-in-out var(--info-delay, 0ms);
+}
+
+/* update custom properties for checked item */
+li:has(input:checked) {
+	--label-opacity: 0.25;
+	--label-scale: 1;
+	--item-scale: 1;
+	--item-opacity: 1;
+	--item-delay: calc(var(--duration) * 2);
+	--title-opacity: 1;
+	--title-y: 0;
+	--title-delay: calc(var(--duration) * 3);
+	--info-opacity: 1;
+	--info-y: 0;
+	--info-delay: calc(var(--duration) * 3);
+	/*outline: 1px dashed red;*/
+	z-index: 99;
+}
+
+/* rotate container based on checked radio */
+.cards:has(input:checked) {
+	transform: rotate(
+		calc(
+			var(--base-rotation) - (var(--index) * var(--full-circle) / var(--items))
+		)
+	);
+}
+/*
+this would be so much simpler if we could use counter values as custom property values
+*/
+.cards:has(input#item-1:checked) {
+	--index: 0;
+}
+.cards:has(input#item-2:checked) {
+	--index: 1;
+}
+.cards:has(input#item-3:checked) {
+	--index: 2;
+}
+.cards:has(input#item-4:checked) {
+	--index: 3;
+}
+.cards:has(input#item-5:checked) {
+	--index: 4;
+}
+.cards:has(input#item-6:checked) {
+	--index: 5;
+}
+.cards:has(input#item-7:checked) {
+	--index: 6;
+}
+.cards:has(input#item-8:checked) {
+	--index: 7;
+}
+.cards:has(input#item-9:checked) {
+	--index: 8;
+}
+.cards:has(input#item-10:checked) {
+	--index: 9;
+}
+.cards:has(input#item-11:checked) {
+	--index: 10;
+}
+.cards:has(input#item-12:checked) {
+	--index: 11;
+}
+.cards:has(input#item-13:checked) {
+	--index: 12;
+}
+.cards:has(input#item-14:checked) {
+	--index: 13;
+}
+.cards:has(input#item-15:checked) {
+	--index: 14;
+}
+.cards:has(input#item-16:checked) {
+	--index: 15;
+}
+.cards:has(input#item-17:checked) {
+	--index: 16;
+}
+.cards:has(input#item-18:checked) {
+	--index: 17;
+}
+.cards:has(input#item-19:checked) {
+	--index: 18;
+}
+.cards:has(input#item-20:checked) {
+	--index: 19;
+}
+
+/* general styling */
+*,
+::before,
+::after {
+	box-sizing: border-box;
+}
+:root {
+	--clr-bg: #000;
+	--clr-primary: rgb(248, 243, 243);
+}
+html {
+	background-color: var(--clr-bg);
+	font-family: "Abel", sans-serif;
+}
+
+body {
+	min-height: 100svh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+	line-height: 1.4;
+	color: var(--clr-primary);
+	padding: 1rem;
+	margin: 0;
+}
+
+html {
+  background: var(--bone);
+  font-family: "Cairo", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: block;
+  align-items: initial;
+  justify-content: initial;
+  gap: 0;
+  line-height: 1.7;
+  color: var(--ink);
+  padding: 0;
+  margin: 0;
+}
+
+.products {
+  position: relative;
+  isolation: isolate;
+  padding: 0;
+  background: var(--ink);
+}
+
+.product-slide {
+  --slide-bg: #26221e;
+  --slide-ink: #f4f1ec;
+  --slide-muted: rgba(244, 241, 236, 0.72);
+  position: sticky;
+  top: 0;
+  z-index: var(--slide-index);
+  display: grid;
+  width: 100%;
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--slide-bg);
+  color: var(--slide-ink);
+  transition: background-color 0.7s var(--ease-out);
+}
+
+.product-slide-top {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 104px clamp(24px, 5vw, 72px) 0;
+  color: var(--slide-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.product-slide-top span:last-child {
+  direction: ltr;
+  font-family: "Cairo", sans-serif;
+}
+
+.product-slide-layout {
+  display: grid;
+  width: 100%;
+  max-width: 1600px;
+  height: 100%;
+  margin-inline: auto;
+  padding: 130px clamp(24px, 5vw, 72px) 0;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 34vw) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: center;
+  direction: ltr;
+}
+
+.product-slide-title,
+.product-slide-meta {
+  position: relative;
+  z-index: 2;
+  direction: rtl;
+}
+
+.product-slide-title {
+  grid-column: 1;
+  align-self: center;
+  margin-top: 36px;
+  text-align: right;
+}
+
+.product-slide-number {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--slide-muted);
+  font-family: "Cairo", sans-serif;
+  font-size: 0.8rem;
+  direction: ltr;
+  text-align: right;
+}
+
+.product-slide-title h3 {
+  max-width: 12ch;
+  font-size: clamp(2rem, 4vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.product-slide-title p {
+  max-width: 28ch;
+  margin-top: 14px;
+  color: var(--slide-muted);
+  font-size: 0.9rem;
+}
+
+.product-slide-visual {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  grid-column: 2;
+  align-self: end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 20vh;
+}
+
+.product-slide-visual img {
+  width: 100%;
+  height: min(68svh, 680px);
+  margin-top: auto;
+  object-fit: cover;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.16);
+}
+
+.product-slide-meta {
+  grid-column: 3;
+  justify-self: start;
+  width: min(100%, 300px);
+  margin-top: 42px;
+}
+
+.product-slide-meta > div {
+  margin-bottom: 18px;
+}
+
+.product-slide-meta > div span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--slide-muted);
+  font-size: 0.75rem;
+}
+
+.product-slide-meta > div strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.product-slide-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition:
+    color 0.25s var(--ease),
+    background 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+
+.product-slide-link:hover {
+  border-color: var(--slide-ink);
+  background: var(--slide-ink);
+  color: var(--slide-bg);
+}
+
+.product-slide-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 900px) {
+  .product-slide-top {
+    padding: 90px 22px 0;
+  }
+  .product-slide-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 118px 22px 20px;
+    direction: rtl;
+  }
+  .product-slide-title {
+    order: 1;
+    width: 100%;
+    margin: 0;
+    align-self: stretch;
+    text-align: center;
+  }
+  .product-slide-title h3 {
+    font-size: clamp(1.45rem, 4vw, 2rem);
+    margin-inline: auto;
+  }
+  .product-slide-title p {
+    margin-inline: auto;
+    margin-top: 8px;
+    font-size: 0.78rem;
+    line-height: 1.6;
+  }
+  .product-slide-number {
+    margin-bottom: 8px;
+  }
+  .product-slide-visual {
+    position: relative;
+    order: 0;
+    width: min(66vw, 350px);
+    height: clamp(220px, 38svh, 360px);
+    min-height: 0;
+    padding: 0;
+    align-self: center;
+    transform: none;
+  }
+  .product-slide-visual img {
+    height: 100%;
+  }
+  .product-slide-meta {
+    order: 2;
+    display: grid;
+    width: min(100%, 440px);
+    max-width: none;
+    margin: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 14px;
+    text-align: center;
+  }
+  .product-slide-meta > div {
+    margin-bottom: 0;
+  }
+  .product-slide-meta > div span {
+    margin-bottom: 3px;
+    font-size: 0.68rem;
+  }
+  .product-slide-meta > div strong {
+    font-size: 0.8rem;
+  }
+  .product-slide-link {
+    grid-column: 1 / -1;
+    justify-self: center;
+    min-height: 40px;
+    gap: 8px;
+    padding-inline: 12px;
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-slide-top {
+    padding-top: 82px;
+    font-size: 0.7rem;
+  }
+  .product-slide-layout {
+    gap: 10px;
+    padding: 110px 18px 16px;
+  }
+  .product-slide-title h3 {
+    font-size: clamp(1.25rem, 6vw, 1.65rem);
+  }
+  .product-slide-title p {
+    font-size: 0.72rem;
+  }
+  .product-slide-visual {
+    width: min(70vw, 300px);
+    height: clamp(190px, 34svh, 290px);
+  }
+}
+
+@media (max-width: 900px) and (max-height: 700px) {
+  .product-slide-top {
+    padding-top: 72px;
+  }
+  .product-slide-layout {
+    gap: 8px;
+    padding: 94px 18px 12px;
+  }
+  .product-slide-visual {
+    width: min(66vw, 290px);
+    height: clamp(150px, 29svh, 220px);
+  }
+  .product-slide-title h3 {
+    font-size: 1.3rem;
+  }
+  .product-slide-number {
+    margin-bottom: 4px;
+  }
+  .product-slide-title p {
+    margin-top: 4px;
+    font-size: 0.68rem;
+    line-height: 1.4;
+  }
+  .product-slide-meta {
+    gap: 4px 10px;
+  }
+  .product-slide-meta > div span {
+    margin-bottom: 2px;
+    font-size: 0.62rem;
+  }
+  .product-slide-meta > div strong {
+    font-size: 0.72rem;
+  }
+  .product-slide-link {
+    min-height: 36px;
+  }
+}
+
+      /* ============================================
    PROJECTS
    ============================================ */
       .projects {
@@ -777,66 +1390,152 @@
       }
 
       .proj-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-  
+        display: flex;
+        flex-direction: column;
         width: 100vw;
         margin-inline: calc(50% - 50vw);
       }
       .proj {
-        grid-column: 1;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: 50svh 50svh;
+        width: 100%;
+        height: 100svh;
+        min-height: 100svh;
+        align-items: center;
+        padding: 0;
+        background: var(--project-bg);
+        color: var(--project-ink);
+        direction: ltr;
         cursor: pointer;
-        opacity: 0;
-        transform: translateY(30px);
-        animation: projIn 0.9s var(--ease-out) forwards;
-              border-top: 5px solid #ddd7ce;
+    
       }
-      .proj:nth-child(1) {
-        animation-delay: 0.05s;
+      .proj:nth-child(odd) {
+        --project-bg: var(--bone);
+        --project-ink: var(--ink);
+        --project-muted: var(--muted);
       }
-      .proj:nth-child(2) {
-        animation-delay: 0.12s;
+      .proj:nth-child(even) {
+        --project-bg: #1e1b17;
+        --project-ink: var(--cream);
+        --project-muted: rgba(244, 241, 236, 0.68);
       }
-      .proj:nth-child(3) {
-        animation-delay: 0.19s;
-      }
-      .proj:nth-child(4) {
-        animation-delay: 0.26s;
-      }
-      .proj:nth-child(5) {
-        animation-delay: 0.33s;
-      }
-      .proj:nth-child(6) {
-        animation-delay: 0.4s;
-      }
-
-      @keyframes projIn {
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
-
       .proj.hide {
         display: none;
       }
 
+      .proj-heading,
+      .proj-info {
+     
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.75s var(--ease-out),
+          transform 0.75s var(--ease-out);
+      }
+      .proj.in .proj-heading,
+      .proj.in .proj-info {
+        opacity: 1;
+        transform: none;
+        transition-delay: calc(var(--d, 0s) + 0.12s);
+      }
+
+      .proj-heading {
+        grid-column: 1;
+        grid-row: 1;
+        direction: rtl;
+        text-align: right;
+        padding-inline: clamp(16px, 3vw, 48px);
+        align-self: end;
+   
+      }
+      .proj-number {
+        display: block;
+        margin-bottom: 14px;
+        color: var(--project-muted);
+        font-size: 0.95rem;
+        direction: ltr;
+      }
+      .proj-heading h3 {
+        font-size: clamp(1.9rem, 3vw, 2.9rem);
+        font-weight: 500;
+        line-height: 1.3;
+      }
+
       .proj-media {
+        grid-column: 2;
+        grid-row: 1 / -1;
         overflow: hidden;
         width: 100%;
-        height: min(78vh, 760px);
+        height: 100%;
+        min-height: 0;
         background: var(--paper);
         position: relative;
+      }
+      .proj-info {
+        grid-column: 1;
+        grid-row: 2;
+        direction: rtl;
+        text-align: right;
+        padding-inline: clamp(16px, 3vw, 48px);
+        align-self: start;
+      }
+      .proj-info-label {
+        display: block;
+        margin-bottom: 12px;
+        color: var(--project-muted);
+        font-size: 0.9rem;
+      }
+      .proj-info p {
+        max-width: 34ch;
+        margin-bottom: 22px;
+        color: var(--project-muted);
+        font-size: 1.12rem;
+        line-height: 1.8;
+      }
+      .proj-info dl {
+        display: grid;
+        gap: 10px;
+        padding-top: 18px;
+        border-top: 1px solid color-mix(in srgb, var(--project-ink) 20%, transparent);
+      }
+      .proj-info dl div {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        font-size: 0.96rem;
+      }
+      .proj-info dt {
+        color: var(--project-muted);
+      }
+      .proj-info dd {
+        margin: 0;
+        color: var(--project-ink);
+        font-weight: 500;
+        text-align: left;
+      }
+      .proj:nth-child(even) .proj-media {
+        grid-column: 1;
+      }
+      .proj:nth-child(even) .proj-heading,
+      .proj:nth-child(even) .proj-info {
+        grid-column: 2;
       }
       .proj-media img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transform: scale(1.08);
         transition: transform 1.4s var(--ease-out);
         will-change: transform;
       }
+      .proj.in .proj-media img {
+        transform: scale(1);
+        transition-delay: calc(var(--d, 0s) + 0.04s);
+      }
       .proj:hover .proj-media img {
         transform: scale(1.06);
+        transition-delay: 0s;
       }
       .proj-media::after {
         content: "";
@@ -855,7 +1554,7 @@
         inset-inline-start: 18px;
         z-index: 2;
         color: var(--cream);
-        font-size: 20px;
+        font-size: 1rem;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -890,29 +1589,6 @@
       .proj:hover .proj-media .badge {
         opacity: 1;
         transform: none;
-      }
-
-      .proj figcaption {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 20px;
-        padding-top: 18px;
-        font-size: 20px;
-      }
-      .proj-title {
-        color: var(--ink);
-        font-weight: 500;
-        transition: transform 0.4s var(--ease);
-        display: inline-block;
-      }
-      .proj:hover .proj-title {
-        transform: translateX(-4px);
-      }
-      .proj-tag {
-        color: var(--muted);
-        font-weight: 400;
-        white-space: nowrap;
       }
 
       /* ============================================
@@ -1061,7 +1737,7 @@
       .contact-dl dd.ltr {
         direction: ltr;
         text-align: right;
-        font-family: "IBM Plex Sans Arabic", sans-serif;
+        font-family: "Cairo", sans-serif;
       }
 
       /* Form */
@@ -1219,7 +1895,7 @@
         font-weight: 500;
         color: var(--cream);
         margin-bottom: 22px;
-        font-family: "IBM Plex Sans Arabic", sans-serif;
+        font-family: "Cairo", sans-serif;
       }
       .footer-links {
         display: flex;
@@ -1272,6 +1948,20 @@
         color: var(--ink);
         border-color: var(--cream);
         transform: translateY(-2px);
+      }
+
+      .footer-map {
+        padding-block: 32px;
+        border-bottom: 1px solid var(--line-2);
+      }
+      .footer-map h5 {
+        color: var(--cream);
+      }
+      .footer-map iframe {
+        display: block;
+        width: 100%;
+        height: 300px;
+        border: 0;
       }
 
       .footer-bottom {
@@ -1437,12 +2127,8 @@
       }
 
       @media (max-width: 900px) {
-        .menu,
-        .nav-cta {
-          display: none;
-        }
         .burger {
-          display: block;
+                display: inline-flex;
         }
 
         .hero-foot {
@@ -1478,8 +2164,54 @@
           transform: none;
         }
 
+        .proj {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr);
+          grid-template-rows: 18svh 32svh 50svh;
+          gap: 0;
+          height: 100svh;
+          min-height: 100svh;
+        }
+        .proj-heading {
+          grid-column: 1;
+          grid-row: 1;
+          padding: clamp(64px, 12svh, 96px) 18px 0;
+          text-align: center;
+        }
+        .proj-info {
+          grid-column: 1;
+          grid-row: 2;
+          padding-inline: 18px;
+        }
         .proj-media {
-          height: 60vh;
+          grid-column: 1;
+          grid-row: 3;
+          width: 100%;
+          height: 50svh;
+          min-height: 0;
+        }
+        .proj:nth-child(even) {
+          grid-template-rows: 18svh 32svh 50svh;
+        }
+        .proj:nth-child(even) .proj-heading {
+          grid-column: 1;
+          grid-row: 1;
+        }
+        .proj:nth-child(even) .proj-info {
+          grid-column: 1;
+          grid-row: 2;
+        }
+        .proj:nth-child(even) .proj-media {
+          grid-column: 1;
+          grid-row: 3;
+        }
+        .proj-info p {
+          max-width: 100%;
+          margin-bottom: 12px;
+        }
+        .proj-info dl div {
+          justify-content: flex-start;
+          gap: 8px;
         }
 
         .contact-dl > div {
@@ -1492,6 +2224,56 @@
       }
 
       @media (max-width: 600px) {
+        .proj-heading,
+        .proj-info {
+          padding-inline: 12px;
+        }
+        .proj-number {
+          margin-bottom: 6px;
+          font-size: 0.78rem;
+        }
+        .proj-heading h3 {
+          font-size: clamp(1.3rem, 5.2vw, 1.7rem);
+        }
+        .proj-info-label {
+          margin-bottom: 6px;
+          font-size: 0.78rem;
+        }
+        .proj-info p {
+          margin-bottom: 8px;
+          font-size: 0.84rem;
+          line-height: 1.5;
+        }
+        .proj-info dl {
+          gap: 4px;
+          padding-top: 8px;
+        }
+        .proj-info dl div {
+          gap: 4px;
+          font-size: 0.72rem;
+        }
+        .proj-media .caption {
+          bottom: 12px;
+          inset-inline-start: 12px;
+          font-size: 0.88rem;
+        }
+        .mobile-menu {
+          gap: 20px;
+          padding: 96px 24px 28px;
+        }
+        .mobile-menu nav a {
+          padding-block: 7px;
+          font-size: clamp(1.65rem, 8vw, 2.2rem);
+        }
+        .mobile-menu-map iframe {
+          height: 140px;
+        }
+        .footer-map {
+          padding-block: 24px;
+        }
+        .footer-map iframe {
+          height: 220px;
+        }
         .num-grid {
           grid-template-columns: 1fr;
           gap: 32px;
@@ -1514,6 +2296,24 @@
           flex-direction: column;
           align-items: flex-start;
           gap: 8px;
+        }
+      }
+
+      @media (max-width: 900px) and (max-height: 650px) {
+        .proj-number,
+        .proj-info-label {
+          display: none;
+        }
+        .proj-info p {
+          margin-bottom: 6px;
+          font-size: 0.64rem;
+        }
+        .proj-info dl {
+          gap: 2px;
+          padding-top: 5px;
+        }
+        .proj-info dl div {
+          font-size: 0.58rem;
         }
       }
 
@@ -1551,6 +2351,7 @@
 
           <nav class="menu">
             <a href="#services">خدماتنا</a>
+            <a href="#products">منتجاتنا</a>
             <a href="#projects">مشاريعنا</a>
             <a href="#about">من نحن</a>
             <a href="#contact">تواصل</a>
@@ -1558,9 +2359,7 @@
 
           <div class="nav-end">
             <a href="#contact" class="nav-cta">اطلب عرض سعر</a>
-            <button class="burger" id="burger" aria-label="القائمة">
-              <span></span>
-              <span></span>
+            <button class="burger" id="burger" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu">
             </button>
           </div>
         </div>
@@ -1571,11 +2370,22 @@
     <div class="mobile-menu" id="mobileMenu">
       <nav>
         <a href="#services" style="--d: 0.08s">خدماتنا</a>
-        <a href="#projects" style="--d: 0.16s">مشاريعنا</a>
-        <a href="#about" style="--d: 0.24s">من نحن</a>
-        <a href="#contact" style="--d: 0.32s">تواصل</a>
+        <a href="#products" style="--d: 0.16s">منتجاتنا</a>
+        <a href="#projects" style="--d: 0.24s">مشاريعنا</a>
+        <a href="#about" style="--d: 0.32s">من نحن</a>
+        <a href="#contact" style="--d: 0.4s">تواصل</a>
       </nav>
-      <a href="#contact" class="mobile-cta" style="--d: 0.4s">
+      <section class="mobile-menu-map" aria-label="موقع شركة الموارد على الخريطة">
+        <h2>موقعنا</h2>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3712.094807613608!2d39.259932299999996!3d21.504006099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3cd92d44d81dd%3A0xd7ba8cbf8a9c99bd!2z2KfZhNmF2YjYp9ix2K8g2KfZhNiv2YjZhNmK2Kkg2YTZhNix2K7Yp9mFINmIINin2YTYs9mK2LHYp9mF2YrZgw!5e0!3m2!1sen!2seg!4v1791806651931!5m2!1sen!2seg"
+          title="خريطة موقع شركة الموارد"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+      </section>
+      <a href="#contact" class="mobile-cta" style="--d: 0.48s">
         اطلب عرض سعر
         <svg
           width="16"
@@ -1664,7 +2474,7 @@
 
         <div class="hero-media">
           <img src="./img/101.jpg" alt="مشروع رخام فاخر" fetchpriority="high" />
-          <div class="caption">مسجد النور الاحمدي —  الرياض · رخام كرارا إيطالي</div>
+       
         </div>
       </section>
 
@@ -1775,13 +2585,334 @@
       </section>
 
       <!-- ============================================
+     PRODUCTS
+     ============================================ -->
+
+
+      <section class="products" id="products" aria-label="منتجات الرخام والسيراميك">
+        <article class="product-slide" style="--slide-index: 1" aria-labelledby="product-title-01">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>01 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">01</span><h3 id="product-title-01">ترفنتينو تركي</h3><p>رخام طبيعي بدرجات دافئة وعروق هادئة.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/01.png" alt="رخام ترفنتينو بدرجات بيج" fetchpriority="high" referrerpolicy="no-referrer" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>تركيا</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 2" aria-labelledby="product-title-02">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>02 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">02</span><h3 id="product-title-02">ترفنتينو أردني أصفر</h3><p>اختيار دافئ للحوائط والأرضيات والتفاصيل المعمارية.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/02.png" alt="رخام ترفنتينو فاتح" loading="lazy" referrerpolicy="no-referrer" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>الأردن</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 3" aria-labelledby="product-title-03">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>03 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">03</span><h3 id="product-title-03">رخام جالكسي</h3><p>سطح داكن لافت يضيف عمقًا إلى المساحة.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/03.png" alt="أرضية رخام داكن بعروق فاتحة" loading="lazy" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام</strong></div><div><span>التشطيب</span><strong>داكن</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 4" aria-labelledby="product-title-04">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>04 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">04</span><h3 id="product-title-04">رخام ماركوينا صيني</h3><p>رخام أسود بعروق بيضاء واضحة وتباين قوي.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/04.png" alt="رخام ماركوينا أسود بعروق بيضاء" loading="lazy" referrerpolicy="no-referrer" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>الصين</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 5" aria-labelledby="product-title-05">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>05 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">05</span><h3 id="product-title-05">رخام عماني ديزرت</h3><p>درجة رملية طبيعية تناسب المساحات الهادئة.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/05.png" alt="أرضية حجرية بلون رملي فاتح" loading="lazy" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>عُمان</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 6" aria-labelledby="product-title-06">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>06 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">06</span><h3 id="product-title-06">رخام كريمو لايت عماني</h3><p>لون كريمي فاتح يمنح المكان إحساسًا بالاتساع.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/06.png" alt="رخام كريمي فاتح" loading="lazy" referrerpolicy="no-referrer" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>عُمان</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 7" aria-labelledby="product-title-07">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>07 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">07</span><h3 id="product-title-07">رخام كرارا إيطالي</h3><p>رخام أبيض كلاسيكي بعروق رمادية رفيعة.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/07.png" alt="رخام كرارا أبيض بعروق رمادية" loading="lazy" referrerpolicy="no-referrer" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>إيطاليا</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 8" aria-labelledby="product-title-08">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>08 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">08</span><h3 id="product-title-08">رخام ليلك تركي</h3><p>عروق طبيعية متفرعة بتفاصيل فريدة.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/08.png" alt="رخام ليلك بعروق متفرعة" loading="lazy" referrerpolicy="no-referrer" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>تركيا</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 9" aria-labelledby="product-title-09">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>09 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">09</span><h3 id="product-title-09">رخام روزا البرتغالي</h3><p>لون دافئ يضيف لمسة مميزة للتصميم الداخلي.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/09.png" alt="تشطيب حجري بدرجات وردية وبيج" loading="lazy" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>البرتغال</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 10" aria-labelledby="product-title-10">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>10 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">10</span><h3 id="product-title-10">رخام موغلا تركي</h3><p>رخام تركي بتدرجات طبيعية للاستخدامات المتنوعة.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/10.png" alt="تشطيب أرضية رخام فاتحة" loading="lazy" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>تركيا</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 11" aria-labelledby="product-title-11">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>11 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">11</span><h3 id="product-title-11">رخام كمال باشا تركي</h3><p>خامة طبيعية مناسبة للأرضيات والحوائط.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/11.png" alt="تشطيب حجري طبيعي بلون فاتح" loading="lazy" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>تركيا</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 12" aria-labelledby="product-title-12">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>12 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">12</span><h3 id="product-title-12">رخام ستاتواريو</h3><p>رخام أبيض فاخر بعروق رمادية واضحة.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/12.png" alt="رخام ستاتواريو أبيض بعروق رمادية" loading="lazy" referrerpolicy="no-referrer" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>إيطاليا</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 13" aria-labelledby="product-title-13">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>13 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">13</span><h3 id="product-title-13">رخام كالاكاتا</h3><p>خلفية فاتحة مع عروق طبيعية بارزة.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/13.png" alt="رخام كالاكاتا فاتح بعروق طبيعية" loading="lazy" referrerpolicy="no-referrer" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>إيطاليا</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 14" aria-labelledby="product-title-14">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>14 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">14</span><h3 id="product-title-14">رخام بوتيتشينو</h3><p>درجة بيج كلاسيكية بعروق ذهبية هادئة.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/14.png" alt="رخام بوتيتشينو بدرجات البيج" loading="lazy" referrerpolicy="no-referrer" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>إيطاليا</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 15" aria-labelledby="product-title-15">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>15 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">15</span><h3 id="product-title-15">رخام كريم مارفل</h3><p>رخام عماني بلون كريمي وتجانس لوني هادئ.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/15.png" alt="رخام كريم مارفل العماني" loading="lazy" referrerpolicy="no-referrer" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>عُمان</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 16" aria-labelledby="product-title-16">
+          <div class="product-slide-top"><span>الموارد / أحجار طبيعية</span><span>16 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">16</span><h3 id="product-title-16">جرانيت</h3><p>سطح متين بنقوش طبيعية متنوعة للمشاريع الداخلية والخارجية.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/16.png" alt="سطح حجري داكن بتفاصيل طبيعية" loading="lazy" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>جرانيت طبيعي</strong></div><div><span>الأنواع</span><strong>متعددة حسب التوفر</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 17" aria-labelledby="product-title-17">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>17 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">17</span><h3 id="product-title-17">رخام بيترا جراي</h3><p>رخام رمادي داكن بخطوط فاتحة رفيعة.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/17.png" alt="رخام بيترا جراي بخطوط فاتحة" loading="lazy" referrerpolicy="no-referrer" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>بلد المنشأ</span><strong>إيران</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 18" aria-labelledby="product-title-18">
+          <div class="product-slide-top"><span>الموارد / رخام طبيعي</span><span>18 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">18</span><h3 id="product-title-18">رخام التندرا الرمادي</h3><p>درجات رمادية متوازنة تناسب التصاميم المعاصرة.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/18.png" alt="رخام رمادي بعروق طبيعية" loading="lazy" referrerpolicy="no-referrer" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>رخام طبيعي</strong></div><div><span>اللون</span><strong>رمادي</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 19" aria-labelledby="product-title-19">
+          <div class="product-slide-top"><span>الموارد / سيراميك</span><span>19 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">19</span><h3 id="product-title-19">سيراميك وطني</h3><p>تصاميم عملية تناسب الاستخدام اليومي والمساحات المختلفة.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/19.png" alt="أرضية سيراميك فاتحة في مساحة معيشة" loading="lazy" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>سيراميك</strong></div><div><span>بلد المنشأ</span><strong>السعودية</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 20" aria-labelledby="product-title-20">
+          <div class="product-slide-top"><span>الموارد / سيراميك</span><span>20 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">20</span><h3 id="product-title-20">سيراميك هندي</h3><p>ألوان وتشطيبات متعددة للأرضيات والحوائط.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/20.png" alt="تشطيب سيراميك فاتح في حمام" loading="lazy" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>سيراميك</strong></div><div><span>بلد المنشأ</span><strong>الهند</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+        <article class="product-slide" style="--slide-index: 21" aria-labelledby="product-title-21">
+          <div class="product-slide-top"><span>الموارد / سيراميك</span><span>21 / 21</span></div>
+          <div class="product-slide-layout">
+            <header class="product-slide-title"><span class="product-slide-number">21</span><h3 id="product-title-21">سيراميك إسباني</h3><p>خامات بتفاصيل دقيقة ولمسات عصرية للمساحات الراقية.</p></header>
+            <figure class="product-slide-visual"><img src="./img/products/21.png" alt="أرضية سيراميك بتصميم رخامي داكن" loading="lazy" /></figure>
+            <div class="product-slide-meta"><div><span>التصنيف</span><strong>سيراميك</strong></div><div><span>بلد المنشأ</span><strong>إسبانيا</strong></div><a class="product-slide-link" href="#contact">اطلب هذا المنتج <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7" /></svg></a></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Legacy gallery demo retained as a comment to avoid rendering its unrelated content.
+	<li style="--i: 0;" data-name="Bulbasaur">
+		<input type="radio" id="item-1" name="gallery-item" checked>
+		<label for="item-1">
+			<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/bulbasaur-s.png">
+		</label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/bulbasaur-l.png">
+		<h2>Bulbasaur</h2>
+		<p>Bulbasaur is a grass/poison type Pokémon that evolves into Ivysaur. Bulbasaur is also one of the three starter Pokémon in Red/Blue.</p>
+	</li>
+	<li style="--i: 1;" data-name="Charmander">
+		<input type="radio" id="item-2" name="gallery-item">
+		<label for="item-2"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/charmander-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/charmander-l.png" loading="lazy">
+		<h2>Charmander</h2>
+		<p>Charmander is the fire-type starter Pokémon first seen in Pokémon Red/Blue. Charmander uses the power of its fiery tail to attack the enemy and eventually evolves into Charmeleon.</p>
+	</li>
+	<li style="--i: 2;" data-name="Charmeleon">
+		<input type="radio" id="item-3" name="gallery-item">
+		<label for="item-3"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/charmeleon-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/charmeleon-l.png" loading="lazy">
+		<h2>Charmeleon</h2>
+		<p>Charmeleon is a fire-type Pokémon first found in Pokémon Red/Blue. Charmander evolves from the fire-type starter Pokémon Charmander and eventually into Charizard, all while using his awesome fiery powers.</p>
+	</li>
+	<li style="--i: 3;" data-name="Squirtle">
+		<input type="radio" id="item-4" name="gallery-item">
+		<label for="item-4"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/squirtle-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/squirtle-l.png" loading="lazy">
+		<h2>Squirtle</h2>
+		<p>Squirtle is a Water-type starter Pokémon from the original Pokémon Red/Blue. With enough experience it can evolve into a Wartortle.</p>
+	</li>
+	<li style="--i: 4;" data-name="Wigglytuff">
+		<input type="radio" id="item-5" name="gallery-item">
+		<label for="item-5"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/wigglytuff-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/wigglytuff-l.png" loading="lazy">
+		<h2>Wigglytuff</h2>
+		<p>Wigglytuff is a normal/fairy type Pokémon that evolves from Jigglypuff with a Moon Stone. </p>
+	</li>
+	<li style="--i: 5;" data-name="Zubat">
+		<input type="radio" id="item-6" name="gallery-item">
+		<label for="item-6"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/zubat-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/zubat-l.png" loading="lazy">
+		<h2>Zubat</h2>
+		<p>Zubat is a Poison/Flying type Pokémon that evolves into Golbat.</p>
+	</li>
+	<li style="--i: 6;" data-name="Sandslash">
+		<input type="radio" id="item-7" name="gallery-item">
+		<label for="item-7"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/sandslash-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/sandslash-l.png" loading="lazy">
+		<h2>Sandslash</h2>
+		<p>Sandslash is a ground type Pokémon that evolves from Sandshrew.</p>
+	</li>
+	<li style="--i: 7;" data-name="Nidorina">
+		<input type="radio" id="item-8" name="gallery-item">
+		<label for="item-8"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/nidorina-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/nidorina-l.png" loading="lazy">
+		<h2>Nidorina</h2>
+		<p>Nidorina is a poison type Pokémon that evolves from Nidoran (female) and can evolve into Nidoqueen with a Moon Stone. </p>
+	</li>
+	<li style="--i: 8;" data-name="Vulpix">
+		<input type="radio" id="item-9" name="gallery-item">
+		<label for="item-9"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/vulpix-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/vulpix-l.png" loading="lazy">
+		<h2>Vulpix</h2>
+		<p>Vulpix is a fire type Pokémon that evolves into Ninetales with a Fire Stone.</p>
+	</li>
+	<li style="--i: 9;" data-name="Gloom">
+		<input type="radio" id="item-10" name="gallery-item">
+		<label for="item-10"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/gloom-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/gloom-l.png" loading="lazy">
+		<h2>Gloom</h2>
+		<p>Gloom is a Grass/Poison type Pokémon that evolves from Oddish and can evolve into Vileplume with a Leaf Stone, or Bellossom with a Sun Stone.</p>
+	</li>
+	<li style="--i: 10;" data-name="Paras">
+		<input type="radio" id="item-11" name="gallery-item">
+		<label for="item-11"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/paras-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/paras-l.png" loading="lazy">
+		<h2>Paras</h2>
+		<p>Paras is a Bug/Grass type Pokémon that evolves into Parasect. </p>
+	</li>
+	<li style="--i: 11;" data-name="Alakazam">
+		<input type="radio" id="item-12" name="gallery-item">
+		<label for="item-12"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/alakazam-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/alakazam-l.png" loading="lazy">
+		<h2>Alakazam</h2>
+		<p>Alakazam is a psychic-type pokemon from the original Pokemon Red/Blue. As the evolution of Kadabra, Alakazam is the third in a line of powerful spoon-bending psychics.</p>
+	</li>
+	<li style="--i: 12;" data-name="Poliwrath">
+		<input type="radio" id="item-13" name="gallery-item">
+		<label for="item-13"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/poliwrath-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/poliwrath-l.png" loading="lazy">
+		<h2>Poliwrath</h2>
+		<p>Poliwrath is a water/fighting-type pokemon first found in the original Pokemon Red/Blue. Poliwrath is the evolved form of Poliwag and Poliwhirl, and it loves to get up-close and personal, using its confusing belly to misdirect opponents before it goes in for the final punch.</p>
+	</li>
+	<li style="--i: 13;" data-name="Mankey">
+		<input type="radio" id="item-14" name="gallery-item">
+		<label for="item-14"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/mankey-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/mankey-l.png" loading="lazy">
+		<h2>Mankey</h2>
+		<p>Mankey is a fighting-type pokemon first featured in the original Pokemon Red/Blue. Mankey uses its dense form to the fullest advantage, dodging nimbly as it strikes blows on its opponents.</p>
+	</li>
+	<li style="--i: 14;" data-name="Tentacruel">
+		<input type="radio" id="item-15" name="gallery-item">
+		<label for="item-15"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/tentacruel-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/tentacruel-l.png" loading="lazy">
+		<h2>Tentacruel</h2>
+		<p>Tentacruel is a water/poison-type pokemon first found in the original Pokemon Red/Blue. Tentacruel is the evolution of Tentacool, its spindly tentacles more numerous and more poisonous.</p>
+	</li>
+	<li style="--i: 15;" data-name="Farfetch'd">
+		<input type="radio" id="item-16" name="gallery-item">
+		<label for="item-16"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/farfetch_d-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/farfetch_d-l.png" loading="lazy">
+		<h2>Farfetch'd</h2>
+		<p>Farfetch'd is a Normal/Flying type Pokémon. Farfetch'd is very protective of its leek, and can use the vegetable to attack opponents, even as Farfetch'd moves out of harm's way.</p>
+	</li>
+	<li style="--i: 16;" data-name="Voltorb">
+		<input type="radio" id="item-17" name="gallery-item">
+		<label for="item-17"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/voltorb-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/voltorb-l.png" loading="lazy">
+		<h2>Voltorb</h2>
+		<p>Voltorb is an electric-type pokemon first found in the original Pokemon Red/Blue. Voltorb is commonly mistaken for a hidden pokeball, often to the detriment of the one who finds it.</p>
+	</li>
+	<li style="--i: 17;" data-name="Rhyhorn">
+		<input type="radio" id="item-18" name="gallery-item">
+		<label for="item-18"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/rhyhorn-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/rhyhorn-l.png" loading="lazy">
+		<h2>Rhyhorn</h2>
+		<p>Rhyhorn is a ground/rock-type pokemon first found in the original Pokemon Red/Blue. Rhyhorn has a short stocky body that it uses to full advantage by rushing opponents to hit them with his horn-adorned head. It evolves into Rhydon when it reaches level 42. </p>
+	</li>
+	<li style="--i: 18;" data-name="Tangela">
+		<input type="radio" id="item-19" name="gallery-item">
+		<label for="item-19"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/tangela-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/tangela-l.png" loading="lazy">
+		<h2>Tangela</h2>
+		<p>Tangela is a grass-type pokemon first found in the original Pokemon Red/Blue. Tangela uses vines growing out of its body to obscure it so that only its eyes and feet can be seen. </p>
+	</li>
+	<li style="--i: 19;" data-name="Mr. Mime">
+		<input type="radio" id="item-20" name="gallery-item">
+		<label for="item-20"><img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/mr_mime-s.png"></label>
+		<img src="https://raw.githubusercontent.com/cbolson/assets/refs/heads/main/codepen/pokemon/mr_mime-l.png" loading="lazy">
+		<h2>Mr. Mime</h2>
+		<p>Mr. Mime is a psychic-type pokemon from the original Pokemon Red/Blue. Like his name indicates, this pokemon doesn't say much - but watch out! Mr. Mime can copy even the most deadly attack and use it as its own. </p>
+	</li>
+</ul>
+  -->
+      <!-- ============================================
      PROJECTS
      ============================================ -->
       <section class="projects" id="projects">
         <div class="container">
           <div class="sec-head reveal">
             <div class="sec-label">
-              <span class="num">02</span>
+              <span class="num">03</span>
               <span class="dash"></span>
               <span>أعمالنا</span>
             </div>
@@ -1790,7 +2921,11 @@
 
           <div class="proj-grid" id="projGrid">
 
-            <figure class="proj" data-cat="marble">
+            <figure class="proj reveal" data-cat="marble" style="--d: 0s">
+              <header class="proj-heading">
+                <span class="proj-number">01 / مشروع رخام</span>
+                <h3>مدخل فيلا</h3>
+              </header>
               <div class="proj-media">
                 <img
                   src="./img/102.jpg"
@@ -1801,9 +2936,22 @@
                   فيلا —  جدة · رخام كرارا إيطالي
                 </div>
               </div>
+              <div class="proj-info">
+                <span class="proj-info-label">تفاصيل المشروع</span>
+                <p>مدخل أنيق يبرز عروق الرخام الطبيعي ويمنح المساحة استقبالًا فخمًا.</p>
+                <dl>
+                  <div><dt>الموقع</dt><dd>جدة</dd></div>
+                  <div><dt>الخامة</dt><dd>رخام كرارا إيطالي</dd></div>
+                  <div><dt>المساحة</dt><dd>مدخل الفيلا</dd></div>
+                </dl>
+              </div>
             </figure>
 
-            <figure class="proj" data-cat="porcelain">
+            <figure class="proj reveal" data-cat="porcelain" style="--d: 0.08s">
+              <header class="proj-heading">
+                <span class="proj-number">02 / مشروع بورسلين</span>
+                <h3>صالة استقبال</h3>
+              </header>
               <div class="proj-media">
                 <img
                   src="./img/103.jpg"
@@ -1812,9 +2960,22 @@
                 />
                 <div class="caption">صالة استقبال — جيزان · بورسلين رخامي</div>
               </div>
+              <div class="proj-info">
+                <span class="proj-info-label">تفاصيل المشروع</span>
+                <p>تشطيب رخامي هادئ لصالة استقبال يجمع بين وضوح العروق وسهولة العناية.</p>
+                <dl>
+                  <div><dt>الموقع</dt><dd>جيزان</dd></div>
+                  <div><dt>الخامة</dt><dd>بورسلين رخامي</dd></div>
+                  <div><dt>المساحة</dt><dd>صالة استقبال</dd></div>
+                </dl>
+              </div>
             </figure>
 
-            <figure class="proj" data-cat="ceramic">
+            <figure class="proj reveal" data-cat="ceramic" style="--d: 0.16s">
+              <header class="proj-heading">
+                <span class="proj-number">03 / مشروع سيراميك</span>
+                <h3>حمامات رئيسية</h3>
+              </header>
               <div class="proj-media">
                 <img
                   src="./img/104.jpg"
@@ -1825,9 +2986,22 @@
                   حمامات رئيسية —  أبها · سيراميك إسباني
                 </div>
               </div>
+              <div class="proj-info">
+                <span class="proj-info-label">تفاصيل المشروع</span>
+                <p>ألوان متناسقة وتشطيبات عملية لحمامات رئيسية بتفاصيل عصرية.</p>
+                <dl>
+                  <div><dt>الموقع</dt><dd>أبها</dd></div>
+                  <div><dt>الخامة</dt><dd>سيراميك إسباني</dd></div>
+                  <div><dt>المساحة</dt><dd>حمامات رئيسية</dd></div>
+                </dl>
+              </div>
             </figure>
 
-            <figure class="proj" data-cat="marble">
+            <figure class="proj reveal" data-cat="marble" style="--d: 0.24s">
+              <header class="proj-heading">
+                <span class="proj-number">04 / مشروع رخام</span>
+                <h3>سلالم داخلية</h3>
+              </header>
               <div class="proj-media">
                 <img
                   src="./img/105.jpg"
@@ -1838,9 +3012,22 @@
                   سلالم داخلية —   مكة · رخام بيج إسباني
                 </div>
               </div>
+              <div class="proj-info">
+                <span class="proj-info-label">تفاصيل المشروع</span>
+                <p>درجات رخامية دافئة بتشطيب متصل يضيف حضورًا واضحًا للسلالم الداخلية.</p>
+                <dl>
+                  <div><dt>الموقع</dt><dd>مكة</dd></div>
+                  <div><dt>الخامة</dt><dd>رخام بيج إسباني</dd></div>
+                  <div><dt>المساحة</dt><dd>سلالم داخلية</dd></div>
+                </dl>
+              </div>
             </figure>
 
-            <figure class="proj" data-cat="porcelain">
+            <figure class="proj reveal" data-cat="porcelain" style="--d: 0.32s">
+              <header class="proj-heading">
+                <span class="proj-number">05 / مشروع بورسلين</span>
+                <h3>أرضيات فيلا</h3>
+              </header>
               <div class="proj-media">
                 <img
                   src="./img/106.jpg"
@@ -1851,9 +3038,22 @@
                    فيلا — الرياض  · بورسلين 120×60
                 </div>
               </div>
+              <div class="proj-info">
+                <span class="proj-info-label">تفاصيل المشروع</span>
+                <p>ألواح كبيرة المقاس تمنح أرضيات الفيلا امتدادًا بصريًا وتشطيبًا متناسقًا.</p>
+                <dl>
+                  <div><dt>الموقع</dt><dd>الرياض</dd></div>
+                  <div><dt>الخامة</dt><dd>بورسلين 120×60</dd></div>
+                  <div><dt>المساحة</dt><dd>أرضيات داخلية</dd></div>
+                </dl>
+              </div>
             </figure>
 
-            <figure class="proj" data-cat="ceramic">
+            <figure class="proj reveal" data-cat="ceramic" style="--d: 0.4s">
+              <header class="proj-heading">
+                <span class="proj-number">06 / مشروع واجهات</span>
+                <h3>مبنى إداري</h3>
+              </header>
               <div class="proj-media">
                 <img
                   src="./img/107.jpg"
@@ -1863,6 +3063,15 @@
                 <div class="caption">
                   واجهة مبنى إداري — الرياض · سيراميك واجهات
                 </div>
+              </div>
+              <div class="proj-info">
+                <span class="proj-info-label">تفاصيل المشروع</span>
+                <p>كسوة خارجية مقاومة للعوامل الجوية بتفاصيل تناسب الطابع الإداري للمبنى.</p>
+                <dl>
+                  <div><dt>الموقع</dt><dd>الرياض</dd></div>
+                  <div><dt>الخامة</dt><dd>سيراميك واجهات</dd></div>
+                  <div><dt>المساحة</dt><dd>واجهة مبنى إداري</dd></div>
+                </dl>
               </div>
             </figure>
           </div>
@@ -1876,7 +3085,7 @@
         <div class="container">
           <div class="num-head reveal">
             <div class="sec-label">
-              <span class="num">03</span>
+              <span class="num">04</span>
               <span class="dash"></span>
               <span>من نحن</span>
             </div>
@@ -1923,7 +3132,7 @@
           <div class="contact-grid">
             <div class="contact-left reveal">
               <div class="sec-label">
-                <span class="num">04</span>
+                <span class="num">05</span>
                 <span class="dash"></span>
                 <span>تواصل</span>
               </div>
@@ -2015,7 +3224,7 @@
     <footer class="footer">
       <div class="container">
         <div class="footer-top">
-          <div class="footer-col">
+          <div class="footer-col reveal" style="--d: 0s">
             <div class="footer-brand">
               <span class="brand-mark"></span>
               الموارد
@@ -2026,7 +3235,7 @@
             </p>
           </div>
 
-          <div class="footer-col">
+          <div class="footer-col reveal" style="--d: 0.08s">
             <h5>روابط سريعة</h5>
             <div class="footer-links">
               <a href="#services">خدماتنا</a>
@@ -2036,7 +3245,7 @@
             </div>
           </div>
 
-          <div class="footer-col">
+          <div class="footer-col reveal" style="--d: 0.16s">
             <h5>خدماتنا</h5>
             <div class="footer-links">
               <a href="#services">توريد سيراميك</a>
@@ -2046,7 +3255,7 @@
             </div>
           </div>
 
-          <div class="footer-col">
+          <div class="footer-col reveal" style="--d: 0.24s">
             <h5>تواصل</h5>
             <div class="footer-links">
               <a href="tel:+966500000000" dir="ltr" style="text-align: right"
@@ -2129,7 +3338,18 @@
           </div>
         </div>
 
-        <div class="footer-bottom">
+        <section class="footer-map reveal" style="--d: 0.16s" aria-label="موقع شركة الموارد على الخريطة">
+          <h5>موقعنا</h5>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3712.094807613608!2d39.259932299999996!3d21.504006099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3cd92d44d81dd%3A0xd7ba8cbf8a9c99bd!2z2KfZhNmF2YjYp9ix2K8g2KfZhNiv2YjZhNmK2Kkg2YTZhNix2K7Yp9mFINmIINin2YTYs9mK2LHYp9mF2YrZgw!5e0!3m2!1sen!2seg!4v1791806651931!5m2!1sen!2seg"
+            title="خريطة موقع شركة الموارد"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </section>
+
+        <div class="footer-bottom reveal" style="--d: 0.24s">
           <span
             >© <span id="year"></span> شركة الموارد — جميع الحقوق محفوظة.</span
           >
@@ -2192,6 +3412,54 @@
       (function () {
         "use strict";
 
+        const productSlides = document.querySelectorAll(".product-slide");
+        const toneCanvas = document.createElement("canvas");
+        toneCanvas.width = 16;
+        toneCanvas.height = 16;
+        const toneContext = toneCanvas.getContext("2d", { willReadFrequently: true });
+
+        function setProductSlideTone(slide) {
+          const image = slide.querySelector(".product-slide-visual img");
+          if (!image) return;
+
+          function sampleTone() {
+            if (!toneContext || !image.naturalWidth) return;
+
+            try {
+              toneContext.clearRect(0, 0, toneCanvas.width, toneCanvas.height);
+              toneContext.drawImage(image, 0, 0, toneCanvas.width, toneCanvas.height);
+              const pixels = toneContext.getImageData(0, 0, toneCanvas.width, toneCanvas.height).data;
+              let redTotal = 0;
+              let greenTotal = 0;
+              let blueTotal = 0;
+              let sampleCount = 0;
+
+              for (let pixelIndex = 0; pixelIndex < pixels.length; pixelIndex += 4) {
+                if (pixels[pixelIndex + 3] < 128) continue;
+                redTotal += pixels[pixelIndex];
+                greenTotal += pixels[pixelIndex + 1];
+                blueTotal += pixels[pixelIndex + 2];
+                sampleCount += 1;
+              }
+
+              if (!sampleCount) return;
+
+              const darkenFactor = 0.42;
+              const red = Math.round((redTotal / sampleCount) * darkenFactor);
+              const green = Math.round((greenTotal / sampleCount) * darkenFactor);
+              const blue = Math.round((blueTotal / sampleCount) * darkenFactor);
+              slide.style.setProperty("--slide-bg", `rgb(${red} ${green} ${blue})`);
+            } catch {
+              return;
+            }
+          }
+
+          if (image.complete) sampleTone();
+          else image.addEventListener("load", sampleTone, { once: true });
+        }
+
+        productSlides.forEach(setProductSlideTone);
+
         /* ============================================
      NAV scroll state
      ============================================ */
@@ -2225,6 +3493,8 @@
               : !mobileMenu.classList.contains("open");
           burger.classList.toggle("open", open);
           mobileMenu.classList.toggle("open", open);
+          burger.setAttribute("aria-expanded", String(open));
+          burger.setAttribute("aria-label", open ? "إغلاق القائمة" : "فتح القائمة");
           document.body.style.overflow = open ? "hidden" : "";
         }
 
@@ -2247,7 +3517,7 @@
               }
             });
           },
-          { threshold: 0.1, rootMargin: "0px 0px -60px 0px" },
+          { threshold: 0.1, rootMargin: "0px 0px -12px 0px" },
         );
 
         revealEls.forEach((el) => io.observe(el));
@@ -2370,6 +3640,73 @@
           form.reset();
           setTimeout(() => msg.classList.remove("show"), 5000);
         });
+
+        /* ============================================
+     Product gallery
+     ============================================ */
+        const productGallery = document.querySelector("[data-product-gallery]");
+
+        if (productGallery) {
+          const productOrbit = productGallery.querySelector(".product-orbit");
+          const productButtons = [...productGallery.querySelectorAll(".product-orbit-item")];
+          const productImage = productGallery.querySelector("[data-product-image]");
+          const productTitle = productGallery.querySelector("[data-product-title]");
+          const productDescription = productGallery.querySelector("[data-product-description]");
+          const productCount = productGallery.querySelector("[data-product-count]");
+          let activeProduct = 0;
+
+          function selectProduct(index) {
+            activeProduct = (index + productButtons.length) % productButtons.length;
+            const selected = productButtons[activeProduct];
+            const currentIndex = String(activeProduct + 1).padStart(2, "0");
+            const totalCount = String(productButtons.length).padStart(2, "0");
+
+            productGallery.style.setProperty(
+              "--orbit-rotation",
+              `${(-activeProduct * 360) / productButtons.length}deg`,
+            );
+            productButtons.forEach((button, buttonIndex) => {
+              const isActive = buttonIndex === activeProduct;
+              button.classList.toggle("is-active", isActive);
+              button.setAttribute("aria-pressed", String(isActive));
+            });
+
+            productImage.src = selected.dataset.image;
+            productImage.alt = selected.dataset.title;
+            productTitle.textContent = selected.dataset.title;
+            productDescription.textContent = selected.dataset.description;
+            productCount.textContent = `${currentIndex} / ${totalCount}`;
+
+            if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+              productImage.animate(
+                [
+                  { opacity: 0.35, transform: "scale(0.97)" },
+                  { opacity: 1, transform: "scale(1)" },
+                ],
+                { duration: 450, easing: "cubic-bezier(0.16, 1, 0.3, 1)" },
+              );
+            }
+          }
+
+          productButtons.forEach((button, index) => {
+            button.addEventListener("click", () => selectProduct(index));
+          });
+          productGallery
+            .querySelector("[data-product-prev]")
+            .addEventListener("click", () => selectProduct(activeProduct - 1));
+          productGallery
+            .querySelector("[data-product-next]")
+            .addEventListener("click", () => selectProduct(activeProduct + 1));
+          productGallery.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowRight") {
+              event.preventDefault();
+              selectProduct(activeProduct + 1);
+            } else if (event.key === "ArrowLeft") {
+              event.preventDefault();
+              selectProduct(activeProduct - 1);
+            }
+          });
+        }
 
         /* ============================================
      Footer year
