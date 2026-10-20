@@ -169,7 +169,16 @@ h1,h2,h3{font-family:"Alexandria","Cairo",sans-serif;line-height:1.25;font-weigh
 .lb img{max-width:94vw;max-height:76vh;border-radius:3px;transform:scale(.95);transition:transform .5s var(--ease)}
 .lb.open img{transform:none}
 .lb figcaption{margin-top:14px;font-weight:600}
-.lb button{position:absolute;top:16px;inset-inline-end:16px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.3);color:#fff;font-size:22px}
+.lb .x{position:absolute;top:16px;inset-inline-end:16px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.3);color:#fff;font-size:22px;z-index:3}
+.lb .ar{position:absolute;top:50%;margin-top:-23px;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;z-index:3;transition:background .3s}
+.lb .ar:hover{background:rgba(255,255,255,.28)}
+.lb .ar svg{width:20px;height:20px}
+.lb .ar.nx{left:12px}.lb .ar.pv{right:12px}
+.lb figure{touch-action:pan-y}
+.lb img{transition:transform .5s var(--ease),opacity .25s}
+.lb img.sw{opacity:0}
+.lb .cnt{font-size:13px;color:rgba(247,244,238,.6);margin-top:4px;display:block}
+@media(max-width:699px){.lb .ar{top:auto;bottom:22px;margin:0}.lb .ar.nx{left:calc(50% - 56px)}.lb .ar.pv{right:calc(50% - 56px)}}
 
 /* reveal */
 .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
@@ -350,7 +359,12 @@ h1,h2,h3{font-family:"Alexandria","Cairo",sans-serif;line-height:1.25;font-weigh
   <button class="up" id="up" aria-label="للأعلى"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button>
 </div>
 
-<div class="lb" id="lb"><button id="lbx" aria-label="إغلاق">×</button><figure><img id="lbi" src="" alt=""><figcaption id="lbc"></figcaption></figure></div>
+<div class="lb" id="lb" role="dialog" aria-modal="true">
+  <button class="x" id="lbx" aria-label="إغلاق">×</button>
+  <button class="ar pv" id="lbp" aria-label="السابق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+  <button class="ar nx" id="lbn" aria-label="التالي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" transform="matrix(1 0 0 1 0 0)" style="transform:scaleX(-1);transform-origin:center"/></svg></button>
+  <figure id="lbf"><img id="lbi" src="" alt=""><figcaption><span id="lbc"></span><span class="cnt" id="lbk"></span></figcaption></figure>
+</div>
 
 <script>
 (function(){
@@ -419,13 +433,39 @@ $$(".arr").forEach(function(a){a.onclick=function(){
 }});
 
 /* lightbox */
-var lb=$("#lb");
+var lb=$("#lb"),lbi=$("#lbi"),list=[],idx=0;
 function close(){lb.classList.remove("open");document.body.style.overflow=""}
+function show(i,instant){
+  idx=(i+list.length)%list.length;
+  var im=$("img",list[idx]);
+  function set(){lbi.src=im.src;lbi.alt=im.alt;$("#lbc").textContent=im.alt;
+    $("#lbk").textContent=(idx+1)+" / "+list.length;lbi.classList.remove("sw")}
+  if(instant){set()}else{lbi.classList.add("sw");setTimeout(set,180)}
+  /* preload neighbours */
+  [1,-1].forEach(function(d){var n=$("img",list[(idx+d+list.length)%list.length]);(new Image()).src=n.src});
+}
+function step(d){if(list.length>1)show(idx+d)}
 $$(".card").forEach(function(c){c.onclick=function(){
-  var im=$("img",c);$("#lbi").src=im.src;$("#lbi").alt=im.alt;$("#lbc").textContent=im.alt;
-  lb.classList.add("open");document.body.style.overflow="hidden"}});
-$("#lbx").onclick=close;lb.onclick=function(e){if(e.target===lb)close()};
-addEventListener("keydown",function(e){if(e.key==="Escape"){close();menu(false)}});
+  /* gallery = visible cards of the same rail (respects the active filter) */
+  list=$$(".card",c.parentNode).filter(function(x){return !x.classList.contains("hide")});
+  lb.classList.add("open");document.body.style.overflow="hidden";
+  show(list.indexOf(c),true)}});
+$("#lbx").onclick=close;
+$("#lbp").onclick=function(){step(-1)};
+$("#lbn").onclick=function(){step(1)};
+lb.onclick=function(e){if(e.target===lb||e.target===$("#lbf"))close()};
+/* swipe: drag left = next, drag right = previous (RTL) */
+var sx=0,sy=0;
+lb.addEventListener("touchstart",function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+lb.addEventListener("touchend",function(e){
+  var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+  if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)step(dx<0?1:-1)},{passive:true});
+addEventListener("keydown",function(e){
+  if(e.key==="Escape"){close();menu(false)}
+  if(!lb.classList.contains("open"))return;
+  if(e.key==="ArrowLeft")step(1);
+  if(e.key==="ArrowRight")step(-1);
+});
 
 /* form (front-end only — connect to your backend/WhatsApp/email service) */
 var fm=$("#form"),fmsg=$("#fmsg");
